@@ -16,13 +16,13 @@ app.use(cors());
 mongoose.connect(process.env.DB_CONNECT,()=>console.log('Connected to Database'));
 
 
-app.get('/',(req,res)=>res.send({status:"done",message:"connection made"}));
+app.get('/',(req,res)=>res.sendFile(__dirname +'/index.html'));
+app.get('/test',(req,res)=>res.sendFile(__dirname +'/index.html'));
 app.post('/record',async (req,res)=>{
     console.log(req.body);
     var logToSave = new Logs({
         dateTime : req.body.dateTime
     });
-
 
     await logToSave.save();
 
